@@ -11,11 +11,6 @@ import org.apache.flink.streaming.api.windowing.time.Time
 object StreamingWordCount {
 
     def main(args: Array[String]): Unit = {
-        /**
-          * 创建执行环境
-          * 如果程序是独立调用的，返回本地执行环境
-          * 如果是客户端命令行调用提交到集群，返回此集群的执行环境
-          */
         val env = StreamExecutionEnvironment.getExecutionEnvironment
         val data: DataStream[String] = env.socketTextStream("localhost", 9998)
         val result = data.flatMap(_.split(" ")).map((_, 1)).keyBy(0).timeWindow(Time.seconds(5)).sum(1)
