@@ -1,6 +1,5 @@
-package com.study.flink
+package com.study.flink.process
 
-import com.study.flink.process.WordCountProcessFunction
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
 

@@ -1,4 +1,4 @@
-package com.study.flink
+package com.study.flink.batch
 
 import org.apache.flink.api.scala.{DataSet, ExecutionEnvironment}
 import org.apache.flink.api.scala._
