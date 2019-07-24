@@ -35,5 +35,5 @@ object EventTimeWordCount {
         env.execute("EventTimeWordCount")
     }
 
+    case class Event(eventType: String, timestamp: Long)
 }
-case class Event(eventType: String, timestamp: Long)

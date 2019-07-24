@@ -1,6 +1,6 @@
 package com.study.flink.process
 
-import com.study.flink.stream.Event
+import com.study.flink.stream.EventTimeWordCount.Event
 import org.apache.commons.lang3.time.FastDateFormat
 import org.apache.flink.streaming.api.scala.function.ProcessWindowFunction
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow

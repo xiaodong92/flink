@@ -30,13 +30,6 @@ class BehaviorSource extends SourceFunction[String] {
             arr += s"$event|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills)}"
             currentMills += 1000
         }
-        arr += s"exposure|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills - 5 * 1000)}"
-        arr += s"exposure|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills)}"
-        currentMills += 1000
-        arr += s"click|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills)}"
-        currentMills += 1000
-        arr += s"click|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills)}"
-        arr += s"exposure|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills - 1000 * 1000)}"
         arr.toArray
     }
 

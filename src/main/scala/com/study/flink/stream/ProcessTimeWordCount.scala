@@ -2,6 +2,7 @@ package com.study.flink.stream
 
 import com.study.flink.process.EventTimeProcessWindowFunction
 import com.study.flink.source.BehaviorSource
+import com.study.flink.stream.EventTimeWordCount.Event
 import org.apache.commons.lang3.time.FastDateFormat
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
