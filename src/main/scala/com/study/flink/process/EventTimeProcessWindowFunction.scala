@@ -1,5 +1,6 @@
 package com.study.flink.process
 
+import com.study.flink.common.Constants
 import com.study.flink.stream.EventTimeWordCount.Event
 import org.apache.commons.lang3.time.FastDateFormat
 import org.apache.flink.streaming.api.scala.function.ProcessWindowFunction
@@ -23,7 +24,10 @@ class EventTimeProcessWindowFunction extends ProcessWindowFunction[Event, (Strin
             }
         }
         for (item <- map) {
-            out.collect((FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(windowStartTime), item._1, item._2))
+            out.collect((FastDateFormat.getInstance(Constants.defaultTimeFormat).format(windowStartTime),
+                item._1,
+                item._2)
+            )
         }
         map.clear()
     }
