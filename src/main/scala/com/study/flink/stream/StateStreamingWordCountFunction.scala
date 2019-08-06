@@ -15,6 +15,12 @@ import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow
 import org.apache.flink.util.Collector
 
+/**
+  * -s指定从某一个点回放
+  * flink run -s file:///Users/lixiaodong/temp/checkpoint/9807de90981912deaa737d91cdf20b10/chk-282/_metadata \
+  * -c com.study.flink.stream.StateStreamingWordCountFunction \
+  * target/flink-1.1-SNAPSHOT.jar
+  */
 object StateStreamingWordCountFunction {
 
     def main(args: Array[String]): Unit = {
