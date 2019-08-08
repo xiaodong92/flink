@@ -1,18 +1,17 @@
 package com.study.flink.stream
 
-import org.apache.flink.api.common.functions.{ReduceFunction, RichReduceFunction}
+import org.apache.flink.api.common.functions.ReduceFunction
 import org.apache.flink.api.common.state.{MapState, MapStateDescriptor}
-import org.apache.flink.api.common.typeinfo.{BasicTypeInfo, TypeInformation}
+import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.java.tuple.Tuple
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.runtime.state.filesystem.FsStateBackend
-import org.apache.flink.streaming.api.{CheckpointingMode, TimeCharacteristic}
 import org.apache.flink.streaming.api.environment.CheckpointConfig
-import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-import org.apache.flink.streaming.api.scala._
+import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 import org.apache.flink.streaming.api.scala.function.ProcessWindowFunction
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow
+import org.apache.flink.streaming.api.{CheckpointingMode, TimeCharacteristic}
 import org.apache.flink.util.Collector
 
 /**
@@ -71,4 +70,5 @@ object StateStreamingWordCountFunction {
             out.collect(context.window.getStart, element._1, sum.get(element._1))
         }
     }
+
 }

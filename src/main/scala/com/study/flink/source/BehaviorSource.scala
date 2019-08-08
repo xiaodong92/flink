@@ -12,12 +12,13 @@ class BehaviorSource extends SourceFunction[String] {
     private val events = Array("exposure", "exposure", "click", "exposure", "click")
 
     override def run(ctx: SourceFunction.SourceContext[String]): Unit = {
-        val data = getData
         while (isRunning) {
-            for (item <- data) {
-                println(s"**********source collect -> $item")
-                ctx.collect(item)
-                Thread.sleep(1000)
+            for (_ <- 0 to 100) {
+                val data = getData
+                for (item <- data) {
+                    println(s"**********source collect -> $item")
+                    ctx.collect(item)
+                }
             }
             isRunning = false
         }
@@ -25,11 +26,13 @@ class BehaviorSource extends SourceFunction[String] {
 
     private def getData: Array[String] = {
         val arr: mutable.ArrayBuffer[String] = mutable.ArrayBuffer()
-        var currentMills = System.currentTimeMillis()
         for (event <- events) {
-            arr += s"$event|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(currentMills)}"
-            currentMills += 1000
+            arr += s"$event|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(System.currentTimeMillis())}"
+            Thread.sleep(1000)
         }
+        arr += s"click|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(System.currentTimeMillis() - 3000)}"
+        arr += s"click|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(System.currentTimeMillis() - 5000)}"
+        arr += s"exposure|${FastDateFormat.getInstance(Constants.defaultTimeFormat).format(System.currentTimeMillis() - 1000)}"
         arr.toArray
     }
 
