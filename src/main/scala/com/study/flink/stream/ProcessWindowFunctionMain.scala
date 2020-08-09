@@ -13,7 +13,7 @@ object ProcessWindowFunctionMain {
 
     def main(args: Array[String]): Unit = {
         val env = StreamExecutionEnvironment.getExecutionEnvironment
-        env.setParallelism(1)
+        env.setParallelism(2)
         val data: DataStream[String] = env.socketTextStream("localhost", 9999)
         data.flatMap(_.split(" ")).map((_, 1))
             .keyBy(0)
@@ -34,9 +34,9 @@ object ProcessWindowFunctionMain {
                 globalMap.put(item._1, globalMap.getOrElse(item._1, 0) + item._2)
                 currentMap.put(item._1, currentMap.getOrElse(item._1, 0) + item._2)
             }
-
-            println(s"current = $currentMap")
-            println(s"global = $globalMap")
+            println(s"${getRuntimeContext.getIndexOfThisSubtask} --> key = $key")
+            println(s"${getRuntimeContext.getIndexOfThisSubtask} --> current = $currentMap")
+            println(s"${getRuntimeContext.getIndexOfThisSubtask} --> global = $globalMap")
         }
     }
 
